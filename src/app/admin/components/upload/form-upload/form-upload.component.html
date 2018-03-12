@@ -1,0 +1,19 @@
+<div *ngIf="progress.percentage" class="progress">
+	<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+	 aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+		{{progress.percentage}}%</div>
+</div>
+<div class="box-body box-profile">
+	<img class=" img-responsive" [src]="fileName" alt="">
+	<ul class="list-group list-group-unbordered">
+		<li class="list-group-item">
+			<div class="btn btn-default btn-file btn-block">
+				<i class="fa fa-image"></i> Imagem
+				<input type="file" (change)="selectFile($event)">
+			</div>
+		</li>
+		<li class="list-group-item">
+			<button class="btn btn-success  btn-block" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+		</li>
+	</ul>
+</div>

@@ -7,6 +7,7 @@ export class SharedService {
   public email = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
   public number = /^[0-9]*$/
   public token;
+  public BASE_URL = "http://localhost:8585/";
   constructor(private jwtToken: JwtTokenService) { 
     this.token = jwtToken.token;
     this.selected = this.defaultBindingsStatus[0]
@@ -19,5 +20,9 @@ export class SharedService {
     { value: 2, label: 'Inativo' },
     { value: 3, label: 'Lixeira' }
 ];
-public selected;;
+public selected;
+
+getSrcUrl(path?){
+  return `${this.BASE_URL}${path}`;
+}
 }

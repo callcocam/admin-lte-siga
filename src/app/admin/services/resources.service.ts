@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { DefaultRequestOptionsService } from './default-request-options.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtTokenService } from '../layout/auth/services/jwt-token.service';
+import { SharedService } from './shared.service';
 
 @Injectable()
 export class ResourcesService {
@@ -43,8 +44,11 @@ export class ResourcesService {
   constructor(
     private http: HttpClient,
     private defaultReqOpt: DefaultRequestOptionsService,
-    private jwtToken:JwtTokenService
-  ) {}
+    private jwtToken:JwtTokenService,
+    private shared:SharedService
+  ) {
+    this.BASE_URL = this.shared.BASE_URL
+  }
   getCriteria(order: SearchCriteria) {
     let criteria = new SearchCriteria();
     Object.assign(criteria,order)

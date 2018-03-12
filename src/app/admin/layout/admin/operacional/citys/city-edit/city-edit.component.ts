@@ -14,6 +14,7 @@ import { Subject } from 'rxjs/Subject';
 export class CityEditComponent implements OnInit {
   private dataResult = new City();
   public selectedCityId=1;
+  public fileName = ""
   public options: Object = {
    // charCounterCount: true,
     // Set the image upload parameter.
@@ -108,7 +109,7 @@ export class CityEditComponent implements OnInit {
             if(this.dataResult.status == 3){
               this.sharedService.selected = this.sharedService.defaultBindingsStatus[2]
             }
-            
+            this.fileName = this.sharedService.getSrcUrl(this.dataResult.cover)
           })
       }
       else{
@@ -128,6 +129,10 @@ export class CityEditComponent implements OnInit {
         console.log(error)
       }
     )
+  }
+  upload($event){
+    this.AppForm.controls["cover"].patchValue(JSON.parse($event).result.location);
+    this.fileName = this.sharedService.getSrcUrl(JSON.parse($event).result.location)
   }
 
 }

@@ -23,10 +23,13 @@ import { SortableTableService } from "./components/filtering/sortable/sortable-t
 import { SortableColumnComponent } from "./components/filtering/sortable/sortable-column.component";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
+import { DetailsUploadComponent } from './components/upload/details-upload/details-upload.component';
+import { FormUploadComponent } from './components/upload/form-upload/form-upload.component';
+import { ListUploadComponent } from './components/upload/list-upload/list-upload.component';
 // import "froala-editor/js/froala_editor.pkgd.min.js";
 // import * as $ from "jquery";
-window["$"] = $;
-window["jQuery"] = $;
+import { UploadFileService } from './components/upload/upload-file.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -50,7 +53,10 @@ window["jQuery"] = $;
     ActionsComponent,
     PaginatorComponent,
     SortableTableDirective,
-    SortableColumnComponent
+    SortableColumnComponent,
+    DetailsUploadComponent,
+    FormUploadComponent,
+    ListUploadComponent
   ],
   declarations: [
     InputComponent,
@@ -60,7 +66,10 @@ window["jQuery"] = $;
     ActionsComponent,
     PaginatorComponent,
     SortableTableDirective,
-    SortableColumnComponent
+    SortableColumnComponent,
+    DetailsUploadComponent,
+    FormUploadComponent,
+    ListUploadComponent
   ]
 })
 export class SharedModule {
@@ -77,7 +86,8 @@ export class SharedModule {
         AuthGuestRouterService,
         DefaultRequestOptionsService,
         DaterangePickerService,
-        SortableTableService
+        SortableTableService,
+        UploadFileService
       ]
     };
   }
