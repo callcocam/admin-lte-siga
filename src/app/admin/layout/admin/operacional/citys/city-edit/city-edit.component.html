@@ -1,0 +1,87 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Dashboard
+      <small>Control panel</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li>
+        <a href="#">
+          <i class="fa fa-dashboard"></i> Home</a>
+      </li>
+      <li class="active">Dashboard</li>
+    </ol>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+    Edit
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{ dataResult.title }}</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form [formGroup]="AppForm" method="post">
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-6 col-xs-12">
+              <app-input-component label="Titulo" errorMessage="Campo obrigatorio">
+                <input formControlName="title" type="text" class="form-control" placeholder="Titulo" autocomplete="off">
+              </app-input-component>
+            </div>
+            <div class="col-md-3 col-xs-12">
+              <app-input-component label="Cep" errorMessage="Campo obrigatorio">
+                <input formControlName="cep" type="text" class="form-control" placeholder="Cep" autocomplete="off">
+              </app-input-component>
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <app-input-component label="Status" errorMessage="Campo obrigatorio">
+                    <ng-select [searchable]="false" formControlName="status"  
+                    [items]="sharedService.defaultBindingsStatus"
+                    [(ngModel)]="sharedService.selected">
+                    </ng-select>
+              </app-input-component>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3 col-xs-12">
+              <app-input-component label="Ibge" errorMessage="Campo obrigatorio">
+                <input formControlName="ibge" type="text" class="form-control" placeholder="Ibge" autocomplete="off">
+              </app-input-component>
+            </div>
+            <div class="col-md-3 col-xs-12">
+              <app-input-component label="Uf" errorMessage="Campo obrigatorio">
+                <input formControlName="uf" type="text" class="form-control" placeholder="Uf" autocomplete="off">
+              </app-input-component>
+            </div>
+            <div class="col-md-2 col-xs-12">
+              <app-input-component label="Codigo UF" errorMessage="Campo obrigatorio">
+                <input formControlName="cuf" type="text" class="form-control" placeholder="Codigo UF" autocomplete="off">
+              </app-input-component>
+            </div>
+            <div class="col-md-2 col-xs-12">
+              <app-input-component label="Nome do pais" errorMessage="Campo obrigatorio">
+                <input formControlName="xpais" type="text" class="form-control" placeholder="Nome do pais" autocomplete="off">
+              </app-input-component>
+            </div>
+            <div class="col-md-2 col-xs-12">
+              <app-input-component label="Cod. Paiz" errorMessage="Campo obrigatorio">
+                <input formControlName="cpais" type="text" class="form-control" placeholder="Cod. Pais" autocomplete="off">
+              </app-input-component>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <textarea [froalaEditor]="options" formControlName="description"></textarea>
+            </div>
+          </div>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+          <button  [disabled]="!AppForm.valid" type="submit" (click)="save(AppForm.value)"  class="btn btn-primary">Atualizar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>

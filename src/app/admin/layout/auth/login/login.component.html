@@ -1,0 +1,36 @@
+<div class="login-box">
+    <div class="login-logo">
+      <a routerLink="/"><b>Admin</b>LTE</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+      <p class="login-box-msg">Faça login para iniciar sua sessão</p>
+  
+      <form [formGroup]="loginForm"  method="post">
+          <app-input-component icone="glyphicon glyphicon-envelope form-control-feedback" errorMessage="E-mail inválido">
+              <input formControlName="email" type="email" class="form-control" placeholder="Email"  autocomplete="off">
+            </app-input-component>
+            
+            <app-input-component icone="glyphicon glyphicon-lock form-control-feedback" errorMessage="Campo obrigatório e com 5 caracteres">
+              <input formControlName="password" type="password" class="form-control" placeholder="password"  autocomplete="off">
+            </app-input-component>
+      
+            <div class="row">
+                <!-- /.col -->
+              <div class="col-xs-12">
+                <button [disabled]="!loginForm.valid" type="submit" (click)="login(loginForm.value)" class="btn btn-primary btn-block btn-flat  pull-right">Iniciar Sessão</button>
+              </div>
+              <!-- /.col -->
+            </div>
+      </form>
+  
+      <!-- /.social-auth-links -->
+  
+      <div class="social-auth-links text-center">
+          <p>- OR -</p>
+          <a  routerLink="/admin/auth/recuperar-senha">Recuperar senha</a><br>
+          <a  routerLink="/admin/auth/cadastrar-se" class="text-center">Não sou cadastrado</a>
+        </div>
+    </div>
+    <!-- /.login-box-body -->
+  </div>

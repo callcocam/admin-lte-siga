@@ -1,0 +1,12 @@
+<div class="form-group">
+    <div class="input-group" daterangepicker [options]="picker" (selected)="selectedDate($event, chosenDate)" (applyDaterangepicker)="applyDatepicker($event)">
+         <button type="button" style="margin-right: 10px;" class="btn btn-default btn-sm pull-right">
+            <span>
+               <i class="fa fa-calendar"></i>  {{ chosenDate.start | date:'dd/M/y' }} - {{ chosenDate.end | date:'dd/M/y' }}
+            </span>
+             <i class="fa fa-caret-down"></i>
+          </button>                      
+  </div>
+</div>
+<input type="hidden" name="startDatehControl"  [value]="chosenDate.start | date:'y-M-dd'">
+<input type="hidden" name="endDatehControl"  [value]="chosenDate.end | date:'y-M-dd'">
