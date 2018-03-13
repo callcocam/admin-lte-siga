@@ -21,16 +21,19 @@ import { NotFoundComponent } from './not-found/not-found.component';
           },
           {
             path: 'dashboard',
-            component: ContentComponent
+            component: ContentComponent,
+            data: { breadcrumb: 'DashBoard'}
           },
           {
             path: 'operacional/cidades',
             loadChildren: "./operacional/citys/city.module#CityModule",
-            canActivate: [AuthGuardRouterService]
+            canActivate: [AuthGuardRouterService],
+            data: { breadcrumb: 'Cidades'}
           },
          
         ],
-        canActivate: [AuthGuardRouterService]
+        canActivate: [AuthGuardRouterService],
+        data: { breadcrumb: 'Admin'}
       },
       {
         path: 'admin/auth',

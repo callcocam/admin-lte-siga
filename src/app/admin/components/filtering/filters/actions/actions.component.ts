@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ResourcesService } from '../../../../services/resources.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-actions',
@@ -16,13 +17,12 @@ export class ActionsComponent implements OnInit {
   @Output() emitUpdate = new EventEmitter()
   @Output() emitAjuda = new EventEmitter()
   @Output() emitDelete = new EventEmitter()
-  constructor(private resources: ResourcesService) { }
+  constructor(private resources: ResourcesService, private router: Router) { }
 
   ngOnInit() {
   }
   create(){
-    console.log('create')
-    this.emitCreated.emit('create')
+    this.router.navigate([this.route])
   }
   updateState(id){
     console.log(id)

@@ -1,0 +1,15 @@
+<div #template>
+  <ng-content></ng-content>
+</div>
+<section class="content-header">
+    <h1>
+      Dashboard
+      <small>Painel De Controle</small>
+    </h1>
+    <ol class="breadcrumb" *ngIf="template.children.length == 0">
+     <li  *ngFor="let route of breadcrumbs" [ngClass]="{'last': route.terminal}">
+          <a href="" *ngIf="!route.terminal" [routerLink]="[route.url]">{{ route.displayName }}</a>
+          <span *ngIf="route.terminal">{{ route.displayName }}</span>
+      </li>
+    </ol>
+  </section>

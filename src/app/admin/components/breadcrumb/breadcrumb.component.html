@@ -1,0 +1,15 @@
+<section class="content-header">
+  <h1>
+    Dashboard
+    <small>Control panel {{ breadcrumbs | json }}</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li>
+      <a routerLink="">
+        <i class="fa fa-dashboard"></i> Admin</a>
+    </li>
+    <li *ngFor="let breadcrumb of breadcrumbs">
+      <a [routerLink]="[breadcrumb.url, breadcrumb.params]">{{ breadcrumb.label }}</a>
+    </li>
+  </ol>
+</section>

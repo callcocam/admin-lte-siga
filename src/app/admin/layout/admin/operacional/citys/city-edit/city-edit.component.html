@@ -1,24 +1,9 @@
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <h1>
-      Dashboard
-      <small>Control panel</small>
-    </h1>
-    <ol class="breadcrumb">
-      <li>
-        <a href="#">
-          <i class="fa fa-dashboard"></i> Home</a>
-      </li>
-      <li class="active">Dashboard</li>
-    </ol>
-  </section>
-  <!-- Main content -->
-  <section class="content">
+
     <div class="box box-primary">
       <div class="box-header with-border">
         <h3 class="box-title">{{ dataResult.title }}</h3>
       </div>
+     
       <!-- /.box-header -->
       <!-- form start -->
       <form [formGroup]="AppForm" method="post">
@@ -28,7 +13,7 @@
               <div class="row">
                   <div class="col-md-6 col-xs-12">
                     <app-input-component label="Titulo" errorMessage="Campo obrigatorio">
-                      <input formControlName="title" type="text" class="form-control" placeholder="Titulo" autocomplete="off">
+                      <input (keyup)="onKeyUp($event.target.value)" formControlName="title" type="text" class="form-control" placeholder="Titulo" autocomplete="off">
                     </app-input-component>
                   </div>
                   <div class="col-md-3 col-xs-12">
@@ -93,5 +78,4 @@
         </div>
       </form>
     </div>
-  </section>
-</div>
+   

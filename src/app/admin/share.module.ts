@@ -29,6 +29,7 @@ import { ListUploadComponent } from './components/upload/list-upload/list-upload
 // import "froala-editor/js/froala_editor.pkgd.min.js";
 // import * as $ from "jquery";
 import { UploadFileService } from './components/upload/upload-file.service';
+import { FlashMessagesService } from './components/flash-messages/flash-messages.service';
 
 @NgModule({
   imports: [
@@ -46,7 +47,7 @@ import { UploadFileService } from './components/upload/upload-file.service';
     ReactiveFormsModule,
     FroalaEditorModule,
     FroalaViewModule,
-    NgSelectModule,
+    NgSelectModule,  
     InputComponent,
     FiltersComponent,
     DaterangePickerComponent,

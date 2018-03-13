@@ -5,7 +5,15 @@
   <app-side-left></app-side-left>
 
   <!-- Content Wrapper. Contains page content -->
-  <router-outlet></router-outlet>
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+      <app-bread></app-bread>
+    <!-- Main content -->
+    <section class="content">
+      <flash-messages></flash-messages>
+      <router-outlet></router-outlet>
+    </section>
+  </div>
   <!-- /.content-wrapper -->
   <app-footer></app-footer>
 

@@ -5,14 +5,25 @@ import { DashModule } from './dashboard/dash.module';
 import { AdminComponent } from './admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
+import { FlashMessagesComponent } from '../../components/flash-messages/flash-messages.component';
+import { FlashMessagesService } from '../../components/flash-messages/flash-messages.service';
+import { BreadcrumbComponent } from '../../components/breadcrumb/breadcrumb.component';
+import { BreadModule } from '../../components/bread/bread.module';
 
 @NgModule({
   imports: [
     CommonModule,
     DashModule,
     AdminRoutingModule,
-    RouterModule
+    RouterModule,
+    BreadModule
   ],
-  declarations: [AdminComponent, NotFoundComponent]
+  exports:[
+    FlashMessagesComponent,
+    BreadcrumbComponent
+  ],
+  declarations: [AdminComponent, NotFoundComponent, FlashMessagesComponent,
+    BreadcrumbComponent],
+  providers:[FlashMessagesService]
 })
 export class AdminModule { }

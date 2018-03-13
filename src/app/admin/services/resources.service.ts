@@ -4,6 +4,7 @@ import { DefaultRequestOptionsService } from './default-request-options.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtTokenService } from '../layout/auth/services/jwt-token.service';
 import { SharedService } from './shared.service';
+import { FlashMessagesService } from '../components/flash-messages/flash-messages.service';
 
 @Injectable()
 export class ResourcesService {
@@ -48,6 +49,7 @@ export class ResourcesService {
     private shared:SharedService
   ) {
     this.BASE_URL = this.shared.BASE_URL
+    
   }
   getCriteria(order: SearchCriteria) {
     let criteria = new SearchCriteria();
@@ -69,7 +71,7 @@ export class ResourcesService {
   }
 
   create(data) {
-    return this.http.put(`${this.BASE_URL}${this.path}`,data,this.merge())
+    return this.http.post(`${this.BASE_URL}${this.path}`,data,this.merge())
   }
 
   update(data, params?) {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../../../services/shared.service';
 import { SearchCriteria, ResourcesService } from '../../../../services/resources.service';
+import { BreadService } from '../../../../components/bread/bread.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-citys',
@@ -10,11 +12,13 @@ import { SearchCriteria, ResourcesService } from '../../../../services/resources
 export class CitysComponent implements OnInit {
 
   public loading: boolean;
+  public mudule: "Cidades";
   
   private searchCriteria: SearchCriteria = new SearchCriteria()
   constructor(
     private sharedService: SharedService,
-    private resources: ResourcesService
+    private resources: ResourcesService,
+    private breadcrumbService: BreadService
   ) {}
 
   ngOnInit() {

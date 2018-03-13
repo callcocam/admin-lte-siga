@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { City } from './city';
 import { Subject } from 'rxjs/Subject';
+import { FlashMessagesService } from '../../../../../components/flash-messages/flash-messages.service';
+import { Result } from '../../../../../services/result';
 
 @Component({
   selector: 'app-city-edit',
@@ -39,7 +41,8 @@ export class CityEditComponent implements OnInit {
     private resources: ResourcesService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public _flashMessagesService:FlashMessagesService
   ) {}
 
   ngOnInit() {
@@ -123,8 +126,10 @@ export class CityEditComponent implements OnInit {
     this.resources.path = "admin/cidades"
     this.resources.update(data,{id:this.dataResult.id}).subscribe(
       (result)=>{
-        
-      },
+        let res = new Result()
+        Object.assign(res, result);
+        this._flashMessagesService.show(res.result.msg, { cssClass: `alert-${res.result.type}`, timeout: 5000 });
+       },
       (error)=>{
         console.log(error)
       }
@@ -133,6 +138,11 @@ export class CityEditComponent implements OnInit {
   upload($event){
     this.AppForm.controls["cover"].patchValue(JSON.parse($event).result.location);
     this.fileName = this.sharedService.getSrcUrl(JSON.parse($event).result.location)
+  }
+
+  
+  onKeyUp($event){
+    this.dataResult.title = $event
   }
 
 }
