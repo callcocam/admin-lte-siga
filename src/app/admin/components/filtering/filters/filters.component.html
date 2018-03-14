@@ -1,7 +1,7 @@
 <form [formGroup]="searchForm" (change)="submiter()">
   <div class="form-group">
   <div class="input-group">
-      <app-date-range-picker-btn  (emiselectedDate)="selectedDate($event, chosenDate)"></app-date-range-picker-btn>
+      <app-date-range-picker-btn  (emiselectedDate)="selectedDate($event)"></app-date-range-picker-btn>
     </div>
 </div>
 <input type="hidden" formControlName="start_date" id="start_date" value="">
@@ -18,7 +18,7 @@
     <option *ngFor="let item of itensPerPage" [value]="item">{{ item }}</option>
   </select>
 </label>
-<div class="input-group input-group-sm" id="dataTable_filter" style="width: 150px;">
+<div class="input-group input-group-sm" style="width: 150px;">
   <input formControlName="zfTableQuickSearch" aria-controls="dataTable" class="quick-search form-control pull-right" placeholder="Search" type="text"
     value="">
   <div class="input-group-btn">

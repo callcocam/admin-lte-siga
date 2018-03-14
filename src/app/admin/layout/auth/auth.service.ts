@@ -3,6 +3,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { HttpClient } from '@angular/common/http';
 import { JwtTokenService } from './services/jwt-token.service';
 import { Observable } from 'rxjs/Observable';
+import { MEAT_API } from '../../../app.api';
 
 @Injectable()
 export class AuthService {
@@ -19,6 +20,7 @@ export class AuthService {
     private http: HttpClient,
     public localStorage: LocalStorageService
   ) {
+    this.baseUrl = MEAT_API
     this.check = this.jwtToken.token ? true : false;
     let userLocalStorage = this.localStorage.getObject(this.USER_KEY);
     this.user = userLocalStorage
@@ -29,7 +31,7 @@ export class AuthService {
   }
 
   login(data: any): Observable<any> {
-    return this.http.post(this.baseUrl, data);
+    return this.http.post(`${this.baseUrl}auth`, data);
   }
 
   logout() {
@@ -40,7 +42,7 @@ export class AuthService {
 
   private getUser() {
     return this.http.get(
-      `http://localhost:8585/auth/${
+      `${this.baseUrl}auth${
         this.localStorage.getObject(this.USER_KEY).id
       }`
     );

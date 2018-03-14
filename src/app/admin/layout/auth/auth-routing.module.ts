@@ -4,25 +4,37 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuestRouterService } from './services/auth-guest-router.service';
+import { LogoutComponent } from './logout/logout.component';
+import { AuthGuardRouterService } from './services/auth-guard-router.service';
 
 @NgModule({
   imports: [
      RouterModule.forChild([
       {
         path: '',
-        component: AuthComponent
+        component: AuthComponent,
+        canActivate: [AuthGuestRouterService]
       },
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [AuthGuestRouterService]
       },
       {
         path: 'cadastrar-se',
-        component: RegisterComponent
+        component: RegisterComponent,
+        canActivate: [AuthGuestRouterService]
       },
       {
         path: 'recuperar-senha',
-        component: RegisterComponent
+        component: RegisterComponent,
+        canActivate: [AuthGuestRouterService]
+      },
+      {
+        path: 'sair',
+        component: LogoutComponent,
+        canActivate: [AuthGuardRouterService]
       }
     ])
   ],

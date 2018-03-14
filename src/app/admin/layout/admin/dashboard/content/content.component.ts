@@ -8,7 +8,7 @@ import { SharedService } from '../../../../services/shared.service';
 })
 export class ContentComponent implements OnInit {
 
-  constructor(private sharedService: SharedService) { }
+  constructor(protected sharedService: SharedService) { }
 
   ngOnInit() {
     this.sharedService.AdminLTE.init();

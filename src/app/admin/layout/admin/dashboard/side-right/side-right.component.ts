@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from '../../../../services/local-storage.service';
 
 @Component({
   selector: 'app-side-right',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideRightComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private localStorage: LocalStorageService) { }
+  private userLogado;
   ngOnInit() {
+     this.userLogado = this.localStorage.getObject('user')
   }
 
 }

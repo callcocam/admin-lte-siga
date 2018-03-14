@@ -13,7 +13,7 @@ import { Result } from '../../../../../services/result';
   styleUrls: ["./city-create.component.css"]
 })
 export class CityCreateComponent implements OnInit {
-  private dataResult = new City();
+  public dataResult = new City();
   public selectedCityId = 1;
   public fileName = "";
   public options: Object = {
@@ -33,13 +33,13 @@ export class CityCreateComponent implements OnInit {
     // Allow to upload PNG and JPG.
     imageAllowedTypes: ["jpeg", "jpg", "png"]
   };
-  private AppForm: FormGroup;
+  public AppForm: FormGroup;
   constructor(
-    private sharedService: SharedService,
-    private resources: ResourcesService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    public sharedService: SharedService,
+    public resources: ResourcesService,
+    public router: Router,
+    public route: ActivatedRoute,
+    public formBuilder: FormBuilder,
     public _flashMessagesService: FlashMessagesService
   ) {}
 
@@ -92,7 +92,6 @@ export class CityCreateComponent implements OnInit {
       JSON.parse($event).result.location
     );
   }
-
   onKeyUp($event) {
     this.dataResult.title = $event;
   }

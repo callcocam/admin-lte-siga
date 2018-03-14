@@ -14,7 +14,7 @@ import { Result } from '../../../../../services/result';
   styleUrls: ['./city-edit.component.css']
 })
 export class CityEditComponent implements OnInit {
-  private dataResult = new City();
+  public dataResult = new City();
   public selectedCityId=1;
   public fileName = ""
   public options: Object = {
@@ -35,10 +35,10 @@ export class CityEditComponent implements OnInit {
     imageAllowedTypes: ['jpeg', 'jpg', 'png'],
  
   };
-  private AppForm: FormGroup;
+  public AppForm: FormGroup;
   constructor(
-    private sharedService: SharedService,
-    private resources: ResourcesService,
+    public sharedService: SharedService,
+    public resources: ResourcesService,
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,

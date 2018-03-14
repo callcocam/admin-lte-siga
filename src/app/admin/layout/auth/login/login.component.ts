@@ -12,11 +12,11 @@ import { SharedService } from "../../../services/shared.service";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  redirectAfterLogin = ["/admin/dashboard"];
+  redirectAfterLogin = ["/admin"];
   constructor(
     private router: Router,
     private formBilder: FormBuilder,
-    private sharedService: SharedService,
+    public sharedService: SharedService,
     private authService: AuthService
   ) {}
 
@@ -35,14 +35,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(data) {
-    console.log(data)
-    this.authService.login(data).subscribe(response => {
+     this.authService.login(data).subscribe(response => {
       this.authService.check = true;
       this.authService.jwtToken.token = response.result.token;
       this.authService.localStorage.setObject(
         this.authService.USER_KEY,
         response.result.user
       );
+      console.log(this.redirectAfterLogin)
       this.router.navigate(this.redirectAfterLogin);
     });
   }

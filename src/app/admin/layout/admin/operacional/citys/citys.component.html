@@ -15,7 +15,29 @@
         <div class="mailbox-controls">
           <!-- Check all button -->
           <div class="btn-group">
-            <app-actions route="admin/operacional/cidades/cadastro"></app-actions>
+            <!-- <app-actions status="searchCriteria.valuesState" route="admin/operacional/cidades/cadastro"  updateRoute="admin/operacional/cidades?action=status"></app-actions> -->
+            <button  (click)="create()" style="margin-left: 10px;" class="actions btn btn-success btn-sm btn-flat ">
+              <i class="fa fa-plus-circle"></i>
+              Novo</button>
+          
+          <button *ngIf="searchCriteria.valuesState=='' || searchCriteria.valuesState=='2' || searchCriteria.valuesState =='3'" (click)="updateState(1)" style="margin-left: 10px;" class=" actions btn btn-warning btn-sm btn-flat ">
+            <i class="fa fa-check"></i>
+            Ativar</button>
+          
+          <button *ngIf="searchCriteria.valuesState=='' || searchCriteria.valuesState=='1' || searchCriteria.valuesState =='3'" (click)="updateState(2)" style="margin-left: 10px;" class=" actions btn bg-gray  btn-sm btn-flat">
+            <i class="fa fa-close"></i>
+            Desabilitar</button>
+          
+          <button *ngIf="searchCriteria.valuesState=='' || searchCriteria.valuesState=='1' || searchCriteria.valuesState =='2'" (click)="updateState(3)" style="margin-left: 10px;" class=" actions btn bg-blue btn-sm btn-flat ">
+            <i class="fa fa-trash"></i>
+            Enviar p/ Lixeira</button>
+          
+            <button  *ngIf="searchCriteria.valuesState=='3'" (click)="deleteList()" style="margin-left: 10px;" class=" actions btn btn-danger btn-sm btn-flat ">
+              <i class="fa fa-eraser"></i>
+              Esvaziar Lixeira</button>
+          <button  (click)="ajuda(helper)" style="margin-left: 10px;" class=" ajuda btn bg-purple btn-sm btn-flat ">
+            <i class="fa fa-question-circle"></i>
+            Ajuda</button>
           </div>
           <!-- /.btn-group -->
           <div class="pull-right" style="margin-right: 10px;">
@@ -30,7 +52,7 @@
             <thead>
               <tr class="zf-title">
                 <th width="50">
-                  <input class="minimal" (change)="onChange('all', $event.target.checked)" type="checkbox" [value]="all">
+                  <input class="_all" (change)="onChange('all', $event.target.checked)" type="checkbox">
                 </th>
                 <th class="sorting" sortable-column="title" sort-direction="asc">Nome\Descrição</th>
                 <th class="sorting" sortable-column="cep">Cep</th>
@@ -41,7 +63,7 @@
             <tbody>
               <tr class="zf-data-row text-green" *ngFor="let item of resources.result.sEcho">
                 <td>
-                  <input class="minimal" (change)="onChange(item.id, $event.target.checked)" type="checkbox" [value]="item.id">
+                  <input class="all" (change)="onChange(item.id, $event.target.checked)" type="checkbox" [value]="item.id">
                 </td>
                 <td>
                   <a [routerLink]="[item.id,'edit']">{{ item.title }}</a>
@@ -52,9 +74,11 @@
                   <a class="btn btn-success btn-xs btn-flat" [routerLink]="[item.id,'edit']">
                     <i class="fa fa-pencil"> </i>
                   </a> |
-                  <a class="btn btn-danger btn-xs btn-flat j_confirm_delete" data-state="1" href="/admin-controle-estoque/categorie/action/id">
+                  <button class="btn btn-danger btn-xs btn-flat" mwlConfirmationPopover [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage"
+                    placement="left" (confirm)="delete(item.id)" (cancel)="cancelClicked = true" [confirmText]="confirmText"
+                    [cancelText]="cancelText">
                     <i class="fa fa-trash"> </i>
-                  </a>
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -76,6 +100,8 @@
     </div>
   </div>
 </div>
-
-<pre class="card card-block card-header">{{  searchCriteria | json }}</pre>
-<pre class="card card-block card-header">{{  resources.result | json }}</pre>
+<!-- <pre class="card card-block card-header">{{  idDelete | json }}</pre> -->
+<!-- 
+  <pre class="card card-block card-header">{{  searchCriteria | json }}</pre>
+  <pre class="card card-block card-header">{{  resources.result | json }}</pre> 
+-->

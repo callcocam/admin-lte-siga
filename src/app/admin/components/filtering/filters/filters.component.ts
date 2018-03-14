@@ -18,16 +18,16 @@ export class FiltersComponent implements OnInit {
    {2:"Inativo"},
    {3:"Lixeira"},
   ]
-  private searchForm: FormGroup;
-  private zfTableQuickSearch: FormControl;
-  private zfTableItemPerPage: FormControl;
-  private valuesState: FormControl;
-  private start_date: FormControl;
-  private end_date: FormControl;
+  public searchForm: FormGroup;
+  public zfTableQuickSearch: FormControl;
+  public zfTableItemPerPage: FormControl;
+  public valuesState: FormControl;
+  public start_date: FormControl;
+  public end_date: FormControl;
 
   @Output() onSearchTerm = new EventEmitter();
   @Output() onSearchChang = new EventEmitter();
-  private value;
+  public value;
 
   constructor(private formBuilder: FormBuilder) {}
   
@@ -53,7 +53,7 @@ export class FiltersComponent implements OnInit {
     this.searchForm.valueChanges.subscribe(value => (this.value = value));
   }
 
-  selectedDate(value: any) {
+  selectedDate(value: any,Sel?) {
     this.searchForm.controls["start_date"].patchValue(value.start);
     this.searchForm.controls["end_date"].patchValue(value.end);
     this.submiter();

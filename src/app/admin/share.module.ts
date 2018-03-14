@@ -16,7 +16,6 @@ import { FiltersComponent } from "./components/filtering/filters/filters.compone
 import { DaterangePickerComponent } from "./components/filtering/filters/daterange-picker/daterange-picker.component";
 import { BtnComponent } from "./components/filtering/filters/daterange-picker/daterange-picker/btn/btn.component";
 import { DaterangePickerService } from "./components/filtering/filters/daterange-picker/daterange-picker.service";
-import { ActionsComponent } from "./components/filtering/filters/actions/actions.component";
 import { PaginatorComponent } from "./components/paginator/paginator.component";
 import { SortableTableDirective } from "./components/filtering/sortable/sortable-table.directive";
 import { SortableTableService } from "./components/filtering/sortable/sortable-table.service";
@@ -27,10 +26,11 @@ import { DetailsUploadComponent } from './components/upload/details-upload/detai
 import { FormUploadComponent } from './components/upload/form-upload/form-upload.component';
 import { ListUploadComponent } from './components/upload/list-upload/list-upload.component';
 // import "froala-editor/js/froala_editor.pkgd.min.js";
-// import * as $ from "jquery";
+import * as $ from "jquery";
 import { UploadFileService } from './components/upload/upload-file.service';
 import { FlashMessagesService } from './components/flash-messages/flash-messages.service';
-
+import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { LogoutComponent } from './layout/auth/logout/logout.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -38,6 +38,9 @@ import { FlashMessagesService } from './components/flash-messages/flash-messages
     ReactiveFormsModule,
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger' // set defaults here
+    }),
     RouterModule,
     NgSelectModule
   ],
@@ -48,29 +51,28 @@ import { FlashMessagesService } from './components/flash-messages/flash-messages
     FroalaEditorModule,
     FroalaViewModule,
     NgSelectModule,  
+    ConfirmationPopoverModule,
     InputComponent,
     FiltersComponent,
     DaterangePickerComponent,
-    ActionsComponent,
     PaginatorComponent,
     SortableTableDirective,
     SortableColumnComponent,
     DetailsUploadComponent,
     FormUploadComponent,
-    ListUploadComponent
+    ListUploadComponent, LogoutComponent
   ],
   declarations: [
     InputComponent,
     FiltersComponent,
     DaterangePickerComponent,
     BtnComponent,
-    ActionsComponent,
     PaginatorComponent,
     SortableTableDirective,
     SortableColumnComponent,
     DetailsUploadComponent,
     FormUploadComponent,
-    ListUploadComponent
+    ListUploadComponent, LogoutComponent
   ]
 })
 export class SharedModule {
